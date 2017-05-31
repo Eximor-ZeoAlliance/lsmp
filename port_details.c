@@ -26,7 +26,7 @@
 #include <libproc.h>
 #include <assert.h>
 #include <mach/mach.h>
-#include <mach/mach_voucher.h>
+//#include <mach/mach_voucher.h>
 #include "common.h"
 
 const char * kobject_name(natural_t kotype)
@@ -86,6 +86,7 @@ static uint32_t safesize (int len){
     return (len > 0) ? len : 0;
 }
 
+/*
 uint32_t show_recipe_detail(mach_voucher_attr_recipe_t recipe, char *voucher_outstr, uint32_t maxlen) {
     uint32_t len = 0;
     len += safesize(snprintf(&voucher_outstr[len], maxlen - len, VOUCHER_DETAIL_PREFIX "Key: %u, ", recipe->key));
@@ -157,6 +158,7 @@ char * copy_voucher_detail(mach_port_t task, mach_port_name_t voucher) {
 
     return voucher_outstr;
 }
+*/
 
 void get_receive_port_context(task_t taskp, mach_port_name_t portname, mach_port_context_t *context) {
 	if (context == NULL) {
@@ -175,6 +177,7 @@ void get_receive_port_context(task_t taskp, mach_port_name_t portname, mach_port
 }
 
 int get_recieve_port_status(task_t taskp, mach_port_name_t portname, mach_port_info_ext_t *info){
+/*
     if (info == NULL) {
         return -1;
     }
@@ -192,8 +195,9 @@ int get_recieve_port_status(task_t taskp, mach_port_name_t portname, mach_port_i
                 mach_error_string(ret));
         return -1;
     }
+*/
 
-    return 0;
+    return -1;
 }
 
 void show_task_mach_ports(my_per_task_info_t *taskinfo, uint32_t taskCount, my_per_task_info_t *allTaskInfos)
@@ -394,11 +398,13 @@ void show_task_mach_ports(my_per_task_info_t *taskinfo, uint32_t taskCount, my_p
             printf("\n");
             if (kotype == IKOT_VOUCHER) {
                 vouchercount++;
+/*
                 if (lsmp_config.show_voucher_details) {
                     char * detail = copy_voucher_detail(taskinfo->task, taskinfo->table[i].iin_name);
                     printf("%s\n", detail);
                     free(detail);
                 }
+*/
             }
 			continue;
 		}

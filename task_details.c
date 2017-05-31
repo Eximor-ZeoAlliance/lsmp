@@ -190,6 +190,7 @@ kern_return_t collect_per_task_info(my_per_task_info_t *taskinfo, task_t target_
                 }
             }
 
+/*
             if (KERN_SUCCESS == thread_get_mach_voucher(threadPorts[i], 0, &th_voucher) && th_voucher != IPC_VOUCHER_NULL) {
                 char *detail = copy_voucher_detail(mach_task_self(), th_voucher);
                 taskinfo->threadInfos[i].voucher_detail = strndup(detail, VOUCHER_DETAIL_MAXLEN);
@@ -197,6 +198,7 @@ kern_return_t collect_per_task_info(my_per_task_info_t *taskinfo, task_t target_
 
                 mach_port_deallocate(mach_task_self(), th_voucher);
             }
+*/
 
             mach_port_deallocate(mach_task_self(), threadPorts[i]);
             threadPorts[i] = MACH_PORT_NULL;

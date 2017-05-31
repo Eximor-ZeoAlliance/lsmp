@@ -50,7 +50,7 @@ static void print_usage(char *progname) {
     fprintf(stderr, "Lists information about mach ports. Please see man page for description of each column.\n");
     fprintf(stderr, "\t-p <pid> :  print all mach ports for process id <pid>. \n");
     fprintf(stderr, "\t-a :  print all mach ports for all processeses. \n");
-    fprintf(stderr, "\t-v :  print verbose details for kernel objects.\n");
+//    fprintf(stderr, "\t-v :  print verbose details for kernel objects.\n");
     fprintf(stderr, "\t-h :  print this help.\n");
     exit(1);
 }
@@ -65,7 +65,7 @@ int main(int argc, char *argv[]) {
     int i, option = 0;
     lsmp_config.voucher_detail_length = 128; /* default values for config */
 
-    while((option = getopt(argc, argv, "hvalp:")) != -1) {
+    while((option = getopt(argc, argv, "halp:")) != -1) {
 		switch(option) {
             case 'a':
                 /* user asked for info on all processes */
