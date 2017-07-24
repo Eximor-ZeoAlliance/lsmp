@@ -141,6 +141,7 @@ kern_return_t collect_per_task_info(my_per_task_info_t *taskinfo, task_t target_
     taskinfo->task = target_task;
     pid_for_task(target_task, &taskinfo->pid);
 
+#if 0	 // following part of code is not working correctly on 10.7 and it's not necessary for our purposes
     ret = task_get_exception_ports(taskinfo->task, EXC_MASK_ALL, taskinfo->exceptionInfo.masks, &taskinfo->exceptionInfo.count, taskinfo->exceptionInfo.ports, taskinfo->exceptionInfo.behaviors, taskinfo->exceptionInfo.flavors);
 
     if (ret != KERN_SUCCESS) {
@@ -213,6 +214,7 @@ kern_return_t collect_per_task_info(my_per_task_info_t *taskinfo, task_t target_
 
     vm_deallocate(mach_task_self(), threadPorts, taskinfo->threadCount * sizeof(thread_act_t));
     threadPorts = NULL;
+#endif // end of unused code
 
     ret = mach_port_space_info(target_task, &taskinfo->info, &taskinfo->table, &taskinfo->tableCount, &taskinfo->tree, &taskinfo->treeCount);
 
